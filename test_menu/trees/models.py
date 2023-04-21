@@ -20,6 +20,7 @@ class ChieldMenu(models.Model):
     father_name = models.ForeignKey(
         Menu,
         null=True,
+        blank=True,
         on_delete=models.CASCADE,
         verbose_name='Отец',
         related_name='father_name'

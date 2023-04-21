@@ -1,9 +1,8 @@
 from django import template
+from django.shortcuts import get_object_or_404
 from trees.models import ChieldMenu, Menu
-from django.shortcuts import get_object_or_404 # надо прикрутить к несуществующему айди
+
 register = template.Library()
-
-
 
 
 @register.inclusion_tag('trees/menu.html', takes_context=True)
@@ -13,7 +12,7 @@ def draw_menu(context, id, father_id=None, fathers=[]):
         return {'menues': menues}
     menues = ChieldMenu.objects.filter(father_name=father_id)
     if fathers == []:
-        main_menu = ChieldMenu.objects.get(chield_name=id)
+        main_menu = get_object_or_404(ChieldMenu, chield_name=id)
         fathers.append(main_menu.chield_name)
         while main_menu.father_name:
             father = main_menu.father_name

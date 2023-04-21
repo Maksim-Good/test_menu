@@ -1,7 +1,8 @@
-from . import views
 from django.conf.urls import url
 
+from . import views
+
 urlpatterns = [
-    url(r'^$', views.menu),
-    url('^(?P<id>\d+)/', views.menu, name='menu')
+    url(r'^$', views.index),
+    url('^(?P<id>\d+)/', views.index, name='menu')
 ]
